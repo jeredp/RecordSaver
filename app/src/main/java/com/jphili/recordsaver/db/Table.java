@@ -3,6 +3,7 @@ package com.jphili.recordsaver.db;
 import android.provider.BaseColumns;
 
 public final class Table implements BaseColumns {
+        public static final String _ID = "_ID";
         public static final String TABLE_NAME = "JSON_DOCS";
         public static final String COLUMN_NAME_UUID = "entryid";
         public static final String COLUMN_NAME_TITLE = "title";

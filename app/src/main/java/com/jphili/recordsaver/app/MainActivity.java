@@ -5,21 +5,31 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.inject.Inject;
 import com.jphili.recordsaver.app.models.BasicObject;
+import com.jphili.recordsaver.app.models.Model;
 import com.jphili.recordsaver.db.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import roboguice.activity.RoboActivity;
+import roboguice.inject.InjectView;
 
 public class MainActivity extends RoboActivity {
 
     @Inject
     private Repository repository;
+    @InjectView(R.id.create_text_button)
+    private Button createTextButton;
+    @InjectView(R.id.content_view)
+    private ScrollView contentView;
+
     private MediaRecorder recorder;
 
     @Override
@@ -31,8 +41,7 @@ public class MainActivity extends RoboActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        final TextView textView = (TextView) findViewById(R.id.text_view);
-        textView.setOnClickListener(new View.OnClickListener() {
+        createTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ArrayList<String> stringList = new ArrayList<String>();
@@ -40,9 +49,21 @@ public class MainActivity extends RoboActivity {
                 stringList.add("other");
                 BasicObject basicObject = new BasicObject("val", 1l, stringList);
                 repository.insert(UUID.randomUUID(), "title", basicObject.toJsonString());
-                textView.setText(basicObject.toJsonString());
+                List<Model> models = repository.getData(null, null, "title");
+
+                if(models.size() > 0) {
+                    createTextView(models.get(0).getUuid().toString());
+                } else {
+                    createTextView("Crappy... not found!");
+                }
             }
         });
+    }
+
+    private void createTextView(String text) {
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        contentView.addView(textView);
     }
 
     @Override
