@@ -26,6 +26,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     instrumentTestCompile 'junit:junit:4.+'
     compile 'com.google.code.gson:gson:2.2.+'
+
+    compile 'org.roboguice:roboguice:2.0'
+
     instrumentTestCompile 'com.google.android:android:4.1.1.4'
     instrumentTestCompile 'com.android.support:support-v4:13.0.+'
     instrumentTestCompile 'org.robolectric:robolectric:2.1.+'
