@@ -1,14 +1,12 @@
 package com.jphili.recordsaver.app.models;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.util.List;
 
 public class BasicObject extends Model {
 
     private String stringVal;
     private Long longVal;
+
     public List<String> stringList;
 
     public BasicObject(String stringVal, Long longVal, List<String> stringList) {
@@ -31,5 +29,13 @@ public class BasicObject extends Model {
 
     public void setLongVal(Long longVal) {
         this.longVal = longVal;
+    }
+
+    public List<String> getStringList() {
+        return stringList;
+    }
+
+    public void setStringList(List<String> stringList) {
+        this.stringList = stringList;
     }
 }
