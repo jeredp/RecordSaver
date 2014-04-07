@@ -24,13 +24,33 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    instrumentTestCompile 'junit:junit:4.+'
     compile 'com.google.code.gson:gson:2.2.+'
-
     compile 'org.roboguice:roboguice:2.0'
 
+    // Dependencies for the `testLocal` task, make sure to list all your global dependencies here as well
+//    testLocalCompile 'junit:junit:4.11'
+//    testLocalCompile 'com.google.android:android:4.1.1.4'
+//    testLocalCompile 'com.android.support:support-v4:13.0.+'
+//    testLocalCompile 'org.robolectric:robolectric:2.1.+'
+
+    instrumentTestCompile 'junit:junit:4.+'
     instrumentTestCompile 'com.google.android:android:4.1.1.4'
     instrumentTestCompile 'com.android.support:support-v4:13.0.+'
     instrumentTestCompile 'org.robolectric:robolectric:2.1.+'
 }
 
+//task localTest(type: Test, dependsOn: assemble) {
+//    testClassesDir = sourceSets.testLocal.output.classesDir
+//
+//    android.sourceSets.main.java.srcDirs.each { dir ->
+//        def buildDir = dir.getAbsolutePath().split('/')
+//        buildDir =  (buildDir[0..(buildDir.length - 4)] + ['build', 'classes', 'debug']).join('/')
+//
+//        sourceSets.testLocal.compileClasspath += files(buildDir)
+//        sourceSets.testLocal.runtimeClasspath += files(buildDir)
+//    }
+//
+//    classpath = sourceSets.testLocal.runtimeClasspath
+//}
+
+//check.dependsOn localTest

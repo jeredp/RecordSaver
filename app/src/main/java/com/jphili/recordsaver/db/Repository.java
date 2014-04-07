@@ -3,12 +3,15 @@ package com.jphili.recordsaver.db;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.google.inject.Inject;
+
 import java.util.UUID;
 
 public class Repository {
 
     private final SQLiteDatabase db;
 
+    @Inject
     public Repository(DbHelper dbHelper) {
         this.db = dbHelper.getWritableDatabase();
     }

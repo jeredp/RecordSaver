@@ -1,27 +1,30 @@
 package com.jphili.recordsaver.app;
 
-import android.app.Activity;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.inject.Inject;
 import com.jphili.recordsaver.app.models.BasicObject;
 import com.jphili.recordsaver.db.Repository;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class MainActivity extends Activity {
+import roboguice.activity.RoboActivity;
 
+public class MainActivity extends RoboActivity {
+
+    @Inject
     private Repository repository;
+    private MediaRecorder recorder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RecordSaverApplication application = (RecordSaverApplication) getApplication();
-        repository = application.getRepository();
         setContentView(R.layout.activity_main);
     }
 
